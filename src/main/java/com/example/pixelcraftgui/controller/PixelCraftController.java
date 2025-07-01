@@ -52,7 +52,6 @@ public class PixelCraftController implements PropertyChangeListener {
      * Installs global keyboard shortcuts for common operations.
      */
     private void installGlobalKeyboardShortcuts() {
-        // Get the scene from the view
         javafx.scene.Scene scene = view.getScene();
         
         // Install all keyboard shortcuts in a single handler
@@ -105,6 +104,7 @@ public class PixelCraftController implements PropertyChangeListener {
         }
         
         File selectedFile = view.showSaveDialog();
+
         if (selectedFile != null) {
             try {
                 // Ensure file has .png extension
@@ -185,7 +185,6 @@ public class PixelCraftController implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ("image".equals(evt.getPropertyName())) {
-            // Update button states
             view.getUndoButton().setDisable(!model.canUndo());
             view.getRedoButton().setDisable(!model.canRedo());
         }

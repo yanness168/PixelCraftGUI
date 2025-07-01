@@ -32,15 +32,15 @@ public class PixelCraftModel {
     }
     
     public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
+        this.propertyChangeSupport.addPropertyChangeListener(listener);
     }
     
     public void removePropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(listener);
+        this.propertyChangeSupport.removePropertyChangeListener(listener);
     }
     
     private void notifyImageChanged() {
-        propertyChangeSupport.firePropertyChange("image", null, currentImage);
+        this.propertyChangeSupport.firePropertyChange("image", null, currentImage);
     }
     
     /**
@@ -69,8 +69,11 @@ public class PixelCraftModel {
      * @param converter the converter to apply
      */
     public void applyConverter(ImageConverter converter) {
-        if (currentImage == null) return;
-        
+        if (currentImage == null) {
+            return;
+        }
+
+        // Apply the converter to the current image
         Image convertedImage = converter.convertImage(currentImage);
         this.currentImage = convertedImage;
         
@@ -90,8 +93,11 @@ public class PixelCraftModel {
      * @throws IOException if the image cannot be saved
      */
     public void saveImage(String filePath) throws IOException {
-        if (currentImage == null) return;
-        
+        if (currentImage == null) {
+            return;
+        }
+
+        // Get the width and height of the current image
         int width = (int) currentImage.getWidth();
         int height = (int) currentImage.getHeight();
         
